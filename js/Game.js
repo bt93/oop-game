@@ -4,7 +4,23 @@
 class Game {
     constructor() {
         this.missed = 0;
-        this.phrases = [];
+        this.phrases = this.createPhrases();
         this.activePhrase = null;
     }
+
+    /**
+    * Creates phrases for use in game
+    * @return {array} An array of phrases that could be used in the game
+    */
+    createPhrases() {
+        let phrases = ['Life is like a box of chocolates', 
+                        'You Cannot Have Your Cake And Eat It Too',
+                        'Beauty Is In The Eye Of The Beholder',
+                        'Curiosity Killed The Cat',
+                        'How Do You Like Them Apples']
+        let phraseObjects = [];
+        
+        phrases.forEach(phrase => {phraseObjects.push(new Phrase(phrase))});
+        return phraseObjects;
+    };
 }
