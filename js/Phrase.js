@@ -45,6 +45,8 @@ class Phrase {
             if (charater.textContent === letter) {
                 charater.classList.remove('hide');
                 charater.classList.add('show');
+                charater.classList.add('animated');
+                charater.classList.add('tada');
             }
         });
     }

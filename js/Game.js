@@ -117,20 +117,24 @@ class Game {
 
         if (gameWon) {
             message = 'Congratulations! You win the game!';
-            outcome = 'win'
+            outcome = 'win';
         } else {
             message = 'Bummer. :( Try again!';
-            outcome = 'lose'
+            outcome = 'lose';
         }
         
         // Opens overlay and endgame message
         document.getElementById('overlay').style.display = 'flex';
+        document.getElementById('overlay').classList.add('animated');
+        document.getElementById('overlay').classList.add('jackInTheBox');
         document.getElementById('game-over-message').textContent = message;
         document.getElementById('btn__reset').classList.remove('start');
         document.getElementById('btn__reset').classList.add(outcome);
 
         // Clears current board and creates new game
-        oldPhrase.forEach(charater => charater.remove());
+        oldPhrase.forEach(charater => {
+            charater.remove();
+        });
         keys.forEach(key => {
             key.disabled = false;
             key.classList.remove('wrong');
@@ -140,7 +144,7 @@ class Game {
         // Removes all remaining hearts
         document.querySelectorAll('.tries').forEach(heart => heart.remove())
 
-        // Reapends new hearts
+        // Reappends new hearts
         for (let i = 0; i < 5; i++) {
             let newHeart = document.createElement('li');
             newHeart.className = 'tries';
