@@ -23,4 +23,13 @@ class Game {
         phrases.forEach(phrase => {phraseObjects.push(new Phrase(phrase))});
         return phraseObjects;
     };
+
+    /**
+     * Randomly retrieves one of the phrases at random
+     * @return {Object} Phrase to be used 
+     */
+    getRandomPhrase() {
+        const randomNum = Math.floor(Math.random() * this.phrases.length);
+        return this.phrases[randomNum].phrase; 
+    }
 }
