@@ -25,11 +25,21 @@ class Game {
     };
 
     /**
-     * Randomly retrieves one of the phrases at random
+     * Randomly retrieves one of the phrases
      * @return {Object} Phrase to be used 
      */
     getRandomPhrase() {
         const randomNum = Math.floor(Math.random() * this.phrases.length);
-        return this.phrases[randomNum].phrase; 
+        return this.phrases[randomNum]; 
+    }
+
+    /**
+     * Begins game by selecting a random phrase and displaying it
+     */
+    startGame() {
+        document.getElementById('overlay').style.display = 'none';
+        const randomPhrase = this.getRandomPhrase();
+        this.activePhrase = randomPhrase;
+        randomPhrase.addPhraseToDisplay();
     }
 }

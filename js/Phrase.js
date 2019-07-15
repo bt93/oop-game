@@ -12,13 +12,13 @@ class Phrase {
     addPhraseToDisplay() {
         const phraseHolder = document.querySelector('#phrase ul');
         const splitPhrase = this.phrase.split('');
-        splitPhrase.forEach(letter => {
+        splitPhrase.forEach(charater => {
             let li = document.createElement('li');
-            li.textContent = letter;
-            if (letter === ' ') {
+            li.textContent = charater;
+            if (charater === ' ') {
                 li.className = 'space'
             } else {
-                li.className = `hide letter ${letter}`;
+                li.className = `hide letter ${charater}`;
             }
             phraseHolder.appendChild(li);
         });
