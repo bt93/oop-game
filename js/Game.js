@@ -44,11 +44,26 @@ class Game {
     }
 
     /**
-     * Handels keyboard clicks
-     * @param (htmlButtonElement) button that the user clicks
+     * Handles keyboard clicks
+     * @param (htmlButtonElement) button - that the user clicks
      */
-    handleInteraction() {
-        
+    handleInteraction(button) {
+        button.disabled = true;
+        const selectedLetter = this.activePhrase.checkLetter(button.textContent);
+        let winCheck;
+        // Checks if clicked button letter is in phrase
+        if (!selectedLetter) {
+            button.className = 'wrong';
+            this.removeLife();
+        } else {
+            button.className = 'chosen';
+            this.activePhrase.showMatchedLetter(button.textContent);
+            winCheck = this.checkForWin();
+            // if true player wins
+            if (winCheck) {
+                this.gameOver(true);
+            }
+        }
     }
 
     /**
