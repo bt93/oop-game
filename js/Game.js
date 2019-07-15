@@ -83,4 +83,24 @@ class Game {
             console.log('game over');
         }
     }
+
+    /**
+     * Displays the game over message
+     * @param {boolean} gameWon - weather the player wins or not
+     */
+    gameOver(gameWon) {
+        let message = '';
+        let outcome = '';
+        if (gameWon) {
+            message = 'Congratulations! You win the game!';
+            outcome = 'WIN!'
+        } else {
+            message = 'Bummer! Refresh and try again!';
+            outcome = 'LOSE :('
+        }
+        
+        document.getElementById('overlay').style.display = 'flex';
+        document.getElementById('game-over-message').textContent = message;
+        document.getElementById('btn__reset').textContent = outcome;
+    }
 }
