@@ -35,12 +35,15 @@ class Game {
 
     /**
      * Begins game by selecting a random phrase and displaying it
+     * @param {htmlButtonElement} button - used to remove win or lose class
      */
-    startGame() {
+    startGame(button) {
         document.getElementById('overlay').style.display = 'none';
         const randomPhrase = this.getRandomPhrase();
         this.activePhrase = randomPhrase;
         randomPhrase.addPhraseToDisplay();
+        button.classList.remove('win');
+        button.classList.remove('lose');
     }
 
     /**
@@ -53,10 +56,10 @@ class Game {
         let winCheck;
         // Checks if clicked button letter is in phrase
         if (!selectedLetter) {
-            button.className = 'wrong';
+            button.classList.add('wrong');
             this.removeLife();
         } else {
-            button.className = 'chosen';
+            button.classList.add('chosen');
             this.activePhrase.showMatchedLetter(button.textContent);
             winCheck = this.checkForWin();
             // if true player wins
@@ -106,17 +109,43 @@ class Game {
     gameOver(gameWon) {
         let message = '';
         let outcome = '';
+        let oldPhrase = document.querySelectorAll('#phrase ul li');
+        let keys = document.querySelectorAll('.key');
+        let scoreboard = document.querySelector('#scoreboard ol');
+        this.missed = 0;
+
+
         if (gameWon) {
             message = 'Congratulations! You win the game!';
             outcome = 'win'
         } else {
-            message = 'Bummer! Refresh and try again!';
+            message = 'Bummer. :( Try again!';
             outcome = 'lose'
         }
         
+        // Opens overlay and endgame message
         document.getElementById('overlay').style.display = 'flex';
         document.getElementById('game-over-message').textContent = message;
         document.getElementById('btn__reset').classList.remove('start');
         document.getElementById('btn__reset').classList.add(outcome);
+
+        // Clears current board and creates new game
+        oldPhrase.forEach(charater => charater.remove());
+        keys.forEach(key => {
+            key.disabled = false;
+            key.classList.remove('wrong');
+            key.classList.remove('chosen');
+        });
+
+        // Removes all remaining hearts
+        document.querySelectorAll('.tries').forEach(heart => heart.remove())
+
+        // Reapends new hearts
+        for (let i = 0; i < 5; i++) {
+            let newHeart = document.createElement('li');
+            newHeart.className = 'tries';
+            newHeart.innerHTML = (`<img src="images/liveHeart.png" alt="Heart Icon" height="35" width="30">`);
+            scoreboard.appendChild(newHeart);
+        }
     }
 }
