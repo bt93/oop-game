@@ -80,7 +80,7 @@ class Game {
         scoreboard.removeChild(scoreboard.lastElementChild);
         if (this.missed === 5) {
             // Player lose, game over
-            console.log('game over');
+            this.gameOver(false);
         }
     }
 
@@ -93,14 +93,15 @@ class Game {
         let outcome = '';
         if (gameWon) {
             message = 'Congratulations! You win the game!';
-            outcome = 'WIN!'
+            outcome = 'win'
         } else {
             message = 'Bummer! Refresh and try again!';
-            outcome = 'LOSE :('
+            outcome = 'lose'
         }
         
         document.getElementById('overlay').style.display = 'flex';
         document.getElementById('game-over-message').textContent = message;
-        document.getElementById('btn__reset').textContent = outcome;
+        document.getElementById('btn__reset').classList.remove('start');
+        document.getElementById('btn__reset').classList.add(outcome);
     }
 }
