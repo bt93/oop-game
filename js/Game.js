@@ -68,4 +68,19 @@ class Game {
         }
         return false;
     }
+
+    /**
+     * Adds to missed 
+     * Removes life from scoreboard
+     * Checks for remaining lives and ends game if there are none
+     */
+    removeLife() {
+        this.missed += 1;
+        const scoreboard = document.querySelector('#scoreboard ol');
+        scoreboard.removeChild(scoreboard.lastElementChild);
+        if (this.missed === 5) {
+            // Player lose, game over
+            console.log('game over');
+        }
+    }
 }
