@@ -50,4 +50,22 @@ class Game {
     handleInteraction() {
         
     }
+
+    /**
+     * Checks if player won
+     * @return {boolean} true if won, false if it wasn't
+     */
+    checkForWin() {
+        const htmlLetters = document.querySelectorAll('#phrase .letter');
+        let correctLetters = [];
+        htmlLetters.forEach(charater => {
+            if (charater.classList[2] === 'show') {
+                correctLetters.push(charater);
+            }
+        })
+        if (correctLetters.length === htmlLetters.length) {
+            return true;
+        }
+        return false;
+    }
 }
