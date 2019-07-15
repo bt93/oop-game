@@ -42,4 +42,12 @@ class Game {
         this.activePhrase = randomPhrase;
         randomPhrase.addPhraseToDisplay();
     }
+
+    /**
+     * Handels keyboard clicks
+     * @param (htmlButtonElement) button that the user clicks
+     */
+    handleInteraction() {
+        
+    }
 }

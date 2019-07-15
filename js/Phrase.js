@@ -23,4 +23,19 @@ class Phrase {
             phraseHolder.appendChild(li);
         });
     }
+
+    /**
+     * Checks if the letter is in the phrase
+     * @param (string) letter - letter being checked
+     */
+    checkLetter(letter) {
+        const checkedLetter = this.phrase.includes(letter);
+        if (checkedLetter) {
+            // Display the letter(s)
+            console.log(true);
+        } else {
+            // Remove life
+            console.log(false);
+        }
+    }
 }
