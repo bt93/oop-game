@@ -94,8 +94,9 @@ class Game {
      */
     removeLife() {
         this.missed += 1;
-        const scoreboard = document.querySelector('#scoreboard ol');
-        scoreboard.removeChild(scoreboard.lastElementChild);
+        const scoreboard = document.querySelectorAll('.tries');
+        scoreboard[this.missed - 1].children[0].src = 'images/lostHeart.png';
+        
         if (this.missed === 5) {
             // Player lose, game over
             this.gameOver(false);
